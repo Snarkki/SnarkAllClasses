@@ -1,0 +1,12 @@
+﻿{
+  "Id": "SnarkAllClasses",
+  "DisplayName": "SnarkAllClasses",
+  "Author": "Ode",
+  "Version": "1.0.0",
+  "ManagerVersion": "0.25.0",
+  "Requirements": [],
+  "AssemblyName": "SnarkRogueTweaks.dll",
+  "EntryMethod": "SnarkRogueTweaks.Main.Load",
+  "HomePage": "",
+  "Repository": ""
+}
