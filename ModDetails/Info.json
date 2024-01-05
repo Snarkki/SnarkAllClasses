@@ -5,8 +5,8 @@
   "Version": "1.0.0",
   "ManagerVersion": "0.25.0",
   "Requirements": [],
-  "AssemblyName": "SnarkRogueTweaks.dll",
-  "EntryMethod": "SnarkRogueTweaks.Main.Load",
+  "AssemblyName": "SnarkAllClasses.dll",
+  "EntryMethod": "SnarkAllClasses.Main.Load",
   "HomePage": "",
   "Repository": ""
 }
