@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Kingmaker.EntitySystem.Stats.Base">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Warhammer 40,000 Rogue Trader\WH40KRT_Data\Managed\Kingmaker.EntitySystem.Stats.Base.dll</HintPath>
+    </Reference>
     <Reference Include="UnityModManager">
       <HintPath>$(RogueTraderData)\UnityModManager\UnityModManager.dll</HintPath>
       <Private>False</Private>

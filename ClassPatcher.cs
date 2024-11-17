@@ -6,11 +6,17 @@ using Kingmaker.Blueprints.Items.Equipment;
 using Kingmaker.Blueprints.Items.Components;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Progression.Paths;
+using Kingmaker.UnitLogic.Progression.Features;
+using Kingmaker.UnitLogic.FactLogic;
+using Kingmaker.EntitySystem.Stats.Base;
+using System.Collections.Generic;
+using SnarkAllClasses.Helpers;
 
 namespace SnarkAllClasses
 {
     internal class ClassPatcher
     {
+
         static public void ChangeBlueprints()
         {
             // base classes
@@ -18,6 +24,8 @@ namespace SnarkAllClasses
             var FighterCareerPath = ResourcesLibrary.TryGetBlueprint<BlueprintCareerPath>("974496d72fbe4329b438ee15cf004bd2");
             var LeaderCareerPath = ResourcesLibrary.TryGetBlueprint<BlueprintCareerPath>("33725d84e95e4323ac46d8fbf899b250");
             var SoldierCareerPath = ResourcesLibrary.TryGetBlueprint<BlueprintCareerPath>("06f4f78a9c1a472b85cd79a9a142153d");
+            var BladeDancerCareerPath = ResourcesLibrary.TryGetBlueprint<BlueprintCareerPath>("dd6948ee596346a69733d0bb107c2f42"); // reaper
+
             // archetypes
             var VeteranPath = ResourcesLibrary.TryGetBlueprint<BlueprintCareerPath>("651684417def4c258c72ba91f481b817");
             var TacticianPath = ResourcesLibrary.TryGetBlueprint<BlueprintCareerPath>("604fa184d7d944c8ae5965f9700782b5");
@@ -25,6 +33,7 @@ namespace SnarkAllClasses
             var Hunter_CareerPath = ResourcesLibrary.TryGetBlueprint<BlueprintCareerPath>("6f276e8a8e2c4a548504ae39d2a7f22a");
             var StrategistCareerPath = ResourcesLibrary.TryGetBlueprint<BlueprintCareerPath>("a31b390cabe7464fbfd0e1ba53c4112f");
             var Vanguard_CareerPath = ResourcesLibrary.TryGetBlueprint<BlueprintCareerPath>("fec9cd09f11b4615b7a17f441350d2d4");
+            var Executioner_CareerPath = ResourcesLibrary.TryGetBlueprint<BlueprintCareerPath>("d6c0498a227040c891e4e2703eb55c13");
 
             //Create a new PrerequisiteFact
             var newAdeptPrequisite = new PrerequisiteFact
@@ -55,6 +64,13 @@ namespace SnarkAllClasses
                 MinRank = 15          // Set MinRank as 15
             };
 
+            var newExecPreq = new PrerequisiteFact
+            {
+                Not = false,          // Set Not as false
+                m_Fact = BladeDancerCareerPath.ToReference<BlueprintUnitFactReference>(),   // Set m_Fact as the AdeptPath
+                MinRank = 15          // Set MinRank as 15
+            };
+
             // FighterWarrior addons
             Hunter_CareerPath.Prerequisites.List = Hunter_CareerPath.Prerequisites.List.AddToArray(newFighterPreq);
             TacticianPath.Prerequisites.List = TacticianPath.Prerequisites.List.AddToArray(newFighterPreq);
@@ -64,6 +80,7 @@ namespace SnarkAllClasses
             AssassinCareerPath.Prerequisites.List = AssassinCareerPath.Prerequisites.List.AddToArray(newLeaderPreq);
             Hunter_CareerPath.Prerequisites.List = Hunter_CareerPath.Prerequisites.List.AddToArray(newLeaderPreq);
             VeteranPath.Prerequisites.List = VeteranPath.Prerequisites.List.AddToArray(newLeaderPreq);
+            Executioner_CareerPath.Prerequisites.List = Executioner_CareerPath.Prerequisites.List.AddToArray(newLeaderPreq);
 
             // Operative Addons
             Vanguard_CareerPath.Prerequisites.List = Vanguard_CareerPath.Prerequisites.List.AddToArray(newAdeptPrequisite);
@@ -75,9 +92,16 @@ namespace SnarkAllClasses
             AssassinCareerPath.Prerequisites.List = AssassinCareerPath.Prerequisites.List.AddToArray(newSoldierPreq);
             Vanguard_CareerPath.Prerequisites.List = Vanguard_CareerPath.Prerequisites.List.AddToArray(newSoldierPreq);
             StrategistCareerPath.Prerequisites.List = StrategistCareerPath.Prerequisites.List.AddToArray(newSoldierPreq);
+            Executioner_CareerPath.Prerequisites.List = Executioner_CareerPath.Prerequisites.List.AddToArray(newLeaderPreq);
 
+            // Executioners Addons
+            Vanguard_CareerPath.Prerequisites.List = Vanguard_CareerPath.Prerequisites.List.AddToArray(newExecPreq);
+            StrategistCareerPath.Prerequisites.List = StrategistCareerPath.Prerequisites.List.AddToArray(newExecPreq);
+            TacticianPath.Prerequisites.List = TacticianPath.Prerequisites.List.AddToArray(newAdeptPrequisite);
 
-
+            //// CHANGE GRAND STRATEGIST NOT TO BE FIRST IN INIT
+            //var StrategistKeyStoneFeature = ResourcesLibrary.TryGetBlueprint<BlueprintFeature>("e4e45f74936c4740b7bc03013f6991ba");
+            //StrategistKeyStoneFeature.RemoveComponents<AddMechanicsFeature>();
         }
     }
 }
