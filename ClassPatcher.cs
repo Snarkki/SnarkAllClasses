@@ -97,7 +97,8 @@ namespace SnarkAllClasses
             // Executioners Addons
             Vanguard_CareerPath.Prerequisites.List = Vanguard_CareerPath.Prerequisites.List.AddToArray(newExecPreq);
             StrategistCareerPath.Prerequisites.List = StrategistCareerPath.Prerequisites.List.AddToArray(newExecPreq);
-            TacticianPath.Prerequisites.List = TacticianPath.Prerequisites.List.AddToArray(newAdeptPrequisite);
+            TacticianPath.Prerequisites.List = TacticianPath.Prerequisites.List.AddToArray(newExecPreq);
+            Hunter_CareerPath.Prerequisites.List = Hunter_CareerPath.Prerequisites.List.AddToArray(newExecPreq);
 
             //// CHANGE GRAND STRATEGIST NOT TO BE FIRST IN INIT
             //var StrategistKeyStoneFeature = ResourcesLibrary.TryGetBlueprint<BlueprintFeature>("e4e45f74936c4740b7bc03013f6991ba");
